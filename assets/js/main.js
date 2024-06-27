@@ -94,27 +94,56 @@ skillHeaderArr.forEach((element, idx) => {
 // QUALIFICATION TABS
 let education = document.getElementById("education");
 let work = document.getElementById("work");
+let certificate = document.getElementById("certificate");
 let educationheader = document.getElementById("educationheader");
 let workheader = document.getElementById("workheader");
+let certificateheader = document.getElementById("certificateheader");
+
+// Set initial states
+education.classList.remove("qualification-inactive");
+work.classList.add("qualification-inactive");
+certificate.classList.add("qualification-inactive");
+
 workheader.style.color = "var(--first-color)";
 educationheader.style.color = "var(--text-color)";
+certificateheader.style.color = "var(--text-color)";
 
 educationheader.addEventListener("click", () => {
   let condition1 = work.classList.contains("qualification-inactive");
-  if (!condition1) {
+  let condition2 = certificate.classList.contains("qualification-inactive");
+  if (!condition1 || !condition2) {
     education.classList.remove("qualification-inactive");
     work.classList.add("qualification-inactive");
+    certificate.classList.add("qualification-inactive");
     workheader.style.color = "var(--text-color)";
+    certificateheader.style.color = "var(--text-color)";
     educationheader.style.color = "var(--first-color)";
   }
 });
+
 workheader.addEventListener("click", () => {
-  let condition2 = education.classList.contains("qualification-inactive");
-  if (!condition2) {
+  let condition1 = education.classList.contains("qualification-inactive");
+  let condition2 = certificate.classList.contains("qualification-inactive");
+  if (!condition1 || !condition2) {
     work.classList.remove("qualification-inactive");
     education.classList.add("qualification-inactive");
+    certificate.classList.add("qualification-inactive");
     educationheader.style.color = "var(--text-color)";
+    certificateheader.style.color = "var(--text-color)";
     workheader.style.color = "var(--first-color)";
+  }
+});
+
+certificateheader.addEventListener("click", () => {
+  let condition1 = education.classList.contains("qualification-inactive");
+  let condition2 = work.classList.contains("qualification-inactive");
+  if (!condition1 || !condition2) {
+    certificate.classList.remove("qualification-inactive");
+    education.classList.add("qualification-inactive");
+    work.classList.add("qualification-inactive");
+    educationheader.style.color = "var(--text-color)";
+    workheader.style.color = "var(--text-color)";
+    certificateheader.style.color = "var(--first-color)";
   }
 });
 
